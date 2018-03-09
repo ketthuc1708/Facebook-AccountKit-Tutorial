@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AccountKit Sample</string>
+    <!--Add your facebook app ID here-->
+    <string name="FACEBOOK_APP_ID">000</string>
+    <!--find it in your facebook app, under Account Kit product settings-->
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">xxxxxxxx</string>
+    <!--ak followed by your facebook app ID-->
+    <string name="ak_login_protocol_scheme">ak000</string>
+    <string name="account_id">Account Id</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+</resources>
