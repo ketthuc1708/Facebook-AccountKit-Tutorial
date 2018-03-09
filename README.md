@@ -28,7 +28,7 @@ In the left side menu, go to "settings", select "basic", find the "Add Platform"
 
 Now in the basic settings, a new section named "Android" should be created. You need to add a key hash in the "key hashes" field.
 
-To generate the key hash run this command if you're a Mac user
+To generate the key hash run this command if you're a Mac or *nix user
 ```
 keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
 ```
@@ -52,7 +52,7 @@ In the left side menu, find the "Products" section at the bottom and click the p
 
 
 ## Setup your Android Project
-In order to start working on your app, you need to add the Facebook SDK dependencies to your project. You also need to add some configuration data to enable communication with your created Facebook app. This data include the application Id and some hash keys along with a couple of medata data tags. and finally, you need to add the imported activities and UI components that do work for you with the help of the Facebook SDK. Here is what we need to do in details:
+In order to start working on your app, you need to add the Facebook SDK dependencies to your project. You also need to add some configuration data to enable communication with your created Facebook app. This data include the application Id and some hash keys along with a couple of medata data tags. and finally, you need to add the imported activities and UI components that do the work for you with the help of the Facebook SDK. Here is what we need to do in details:
 
 * First create your Android project in Android Studio and name it whatever you like.
 
@@ -102,18 +102,18 @@ dependencies {
 Those are the activities that do the work for you, they handle the user input, send the login credentials to Facebook backend to be processed, and get back the authentication results so you can inform your user and take the proper action in your app.
 
   Add this code to your application manifest
-```
-        <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
+ ```
+ <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
 
-        <!--Only needed for Email login-->
-        <activity android:name="com.facebook.accountkit.ui.AccountKitEmailRedirectActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="@string/ak_login_protocol_scheme" />
-            </intent-filter>
-        </activity>
+ <!--Only needed for Email login-->
+ <activity android:name="com.facebook.accountkit.ui.AccountKitEmailRedirectActivity">
+     <intent-filter>
+         <action android:name="android.intent.action.VIEW" />
+         <category android:name="android.intent.category.DEFAULT" />
+         <category android:name="android.intent.category.BROWSABLE" />
+         <data android:scheme="@string/ak_login_protocol_scheme" />
+     </intent-filter>
+ </activity>
 ```
 
 ## Now Let's Code
@@ -155,25 +155,24 @@ Here we have two buttons to each login type. Now add a new activity to your proj
 In MainActivity add this method to show the other activity:
 
 ```
-    private void goToProfileInActivity() {
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
-    }
+ private void goToProfileInActivity() {
+     Intent intent = new Intent(this, ProfileActivity.class);
+     startActivity(intent);
+ }
 ```
 
-In the onCreate callback check if there is a logged in user,  If that's the case show the other activity, otherwise we still show the main activity with both login options 
+In the onCreate callback check if there is a logged in user, if that's the case show the other activity, otherwise we still show the main activity with both login options 
 
 ```
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+ protected void onCreate(Bundle savedInstanceState) {
+     super.onCreate(savedInstanceState);
+     setContentView(R.layout.activity_main);
 
-        AccessToken accessToken = AccountKit.getCurrentAccessToken();
-        if (accessToken != null) {
-            goToProfileInActivity();
-        }
-    }
-
+     AccessToken accessToken = AccountKit.getCurrentAccessToken();
+     if (accessToken != null) {
+         goToProfileInActivity();
+     }
+ }
 ```
 
 We use getCurrentAccessToken static method to check if there's a current logged in user.
@@ -238,11 +237,11 @@ Add this code to MainActivity
     }
 
 ``` 
-Here we check the loginResult object state, give some useful feedback in case of error or canceled login and we move to the ProfileActivity only if the user could succesfully login. Now run your project and make sure everything works, you can test with your email and your phone number. When you try email login with your email address, you recieve and new email message that verifies you and gets you back to the profile acitivity once you're verified, When you try phone login with your phone number, you get a new SMS message with the verification code. once you enter that code in your app you're verified and move to the profile acitivity.
+Here we check the loginResult object state, give some useful feedback in case of error or canceled login and we move to the ProfileActivity only if the user could succesfully login. Now run your project and make sure everything works, you can test with your email and your phone number. When you try email login with your email address, you recieve and new email message that verifies you and gets you back to the profile acitivity once you're verified, When you try phone login with your phone number, you get a new SMS message with the verification code, once you enter that code in your app you're verified and move to the profile acitivity.
 
 **Note for Email Login:** If you're logged in to the facebook mobile app in your device and your account is associated with a verified phone number, when you test your code you'll notice that you're moved directly to the profile activity without any SMS verification. This is called instant verification. see https://developers.facebook.com/docs/accountkit/overview/#instantverification
 
-Now the Profile Activity is protected by the login process but it doesn't show anything useful. It doesn't show some useful information about the currently logged in user and what about logout? Let's fix that.
+Now the Profile Activity is protected by the login process but it doesn't show anything useful. It doesn't show any information about the currently logged in user and what about logout? Let's fix that.
 
 Change ProfileActivity layout 
 
