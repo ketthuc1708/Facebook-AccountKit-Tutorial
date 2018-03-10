@@ -1,14 +1,14 @@
 # Introduction
-In this step-by-step tutorial we're building an Android example app to show how to integrate Facebook AccountKit with your app and how to handle different login/logout scenarios. In the final version of the app, The user can login with his email or phone number, if he's logged in successfully he's redirected to a simple profile screen that shows some information about his account along with a logout button.
+In this step-by-step tutorial we're building an Android example app to show how to integrate Facebook Account Kit with your app and how to handle different login/logout scenarios. In the final version of the app, The user can login with his email or phone number, if he's logged in successfully he's redirected to a simple profile screen that shows some information about his account along with a logout button.
 
-## What is AccountKit
+## What is Account Kit
 A passwordless login solution made by Facebook to make app user login much easier and avoid the common issues of using saved passwords. see https://developers.facebook.com/docs/accountkit
 
 ## Setup your Facebook Application
 
 1- **Create The Application**
 
-To enable AccountKit in your Android app you need to create a Facebook application with your developer account.
+To enable Account Kit in your Android app you need to create a Facebook application with your developer account.
 
 If you don't have a facebook developer account, login to https://developers.facebook.com/ with your regular facebook account.
 
@@ -341,7 +341,7 @@ Change ProfileActivity layout
 ```
 
 
-In ProfileActivity add those private files
+In ProfileActivity add those private fields
 
 ```
     private TextView accountIdTextView;
